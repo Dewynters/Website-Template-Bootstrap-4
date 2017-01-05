@@ -1,6 +1,6 @@
 # Website-Template
-# Simon Richards - Dewynters
-# Jan 2017
+
+Simon Richards - Dewynters - Jan 2017
 
 This is a skeleton template to help start building a website.
 
