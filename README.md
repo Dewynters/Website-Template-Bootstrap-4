@@ -5,7 +5,9 @@ This is a skeleton template to help start building a website.
 The following needs to be installed on your local machine:
 
 Node / NPM - https://docs.npmjs.com/getting-started/installing-node
+
 GULP - https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md
+
 SASS - http://sass-lang.com/install
 
 Step 1:
