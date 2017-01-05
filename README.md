@@ -36,3 +36,9 @@ Step 4:
 Make sure any js or css edits are made in the /src/ directory. GULP will output the final minified versions in the distribution/build directory.
 
 Code away!!
+
+NOTES:
+
+Favicons are auto generated, update the /src/images/favicon-master.png to your favicon. The code to add to the header is stored under /src/templates/rendered
+
+To add bootstrap features/plugins edit the gulpfile.js and comment out the ones required.
