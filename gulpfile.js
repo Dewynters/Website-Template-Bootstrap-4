@@ -210,7 +210,7 @@ gulp.task('fonts', function() {
 gulp.task('watch', ['browserSync'], function() {
     gulp.watch(config.projectJsDir + '/**/*.js', ['lint', 'scripts']);
     gulp.watch(config.projectScssDir + '/**/*.scss', ['scss']);
-    gulp.watch(config.publicDir + '/**/*.html', browserSync.reload); 
+    gulp.watch(config.publicDir + '/**/*.html').on('change', browserSync.reload);
 });
 
 // Default Task
