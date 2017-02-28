@@ -44,3 +44,5 @@ NOTES:
 Favicons are auto generated, update the /src/images/favicon-master.png to your favicon. The code to add to the header is stored under /src/templates/rendered
 
 To add bootstrap features/plugins edit the gulpfile.js and comment out the ones required.
+
+Some plugins are included under /src/js/vendor, delete ones you do not plan on using also check they are up to date.
