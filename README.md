@@ -2,7 +2,7 @@
 
 Simon Richards - Dewynters - Jan 2017
 
-This is a skeleton template to help start building a website.
+This is a skeleton template to help start building the front end of a website.
 
 The following needs to be installed on your local machine:
 
