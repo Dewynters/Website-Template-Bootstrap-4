@@ -5,30 +5,54 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
-#Gzip - taken from https://varvy.com/pagespeed/enable-compression.html
-AddOutputFilterByType DEFLATE text/plain
-AddOutputFilterByType DEFLATE text/html
-AddOutputFilterByType DEFLATE text/xml
-AddOutputFilterByType DEFLATE text/css
-AddOutputFilterByType DEFLATE application/xml
-AddOutputFilterByType DEFLATE application/xhtml+xml
-AddOutputFilterByType DEFLATE application/rss+xml
-AddOutputFilterByType DEFLATE application/javascript
-AddOutputFilterByType DEFLATE application/x-javascript
+#Gzip
+<IfModule mod_filter.c>
+    AddOutputFilterByType DEFLATE "application/atom+xml" \
+                                  "application/javascript" \
+                                  "application/json" \
+                                  "application/ld+json" \
+                                  "application/manifest+json" \
+                                  "application/rdf+xml" \
+                                  "application/rss+xml" \
+                                  "application/schema+json" \
+                                  "application/vnd.geo+json" \
+                                  "application/vnd.ms-fontobject" \
+                                  "application/x-font-ttf" \
+                                  "application/x-javascript" \
+                                  "application/x-web-app-manifest+json" \
+                                  "application/xhtml+xml" \
+                                  "application/xml" \
+                                  "font/eot" \
+                                  "font/opentype" \
+                                  "image/bmp" \
+                                  "image/svg+xml" \
+                                  "image/vnd.microsoft.icon" \
+                                  "image/x-icon" \
+                                  "text/cache-manifest" \
+                                  "text/css" \
+                                  "text/html" \
+                                  "text/javascript" \
+                                  "text/plain" \
+                                  "text/vcard" \
+                                  "text/vnd.rim.location.xloc" \
+                                  "text/vtt" \
+                                  "text/x-component" \
+                                  "text/x-cross-domain-policy" \
+                                  "text/xml"
 
-## EXPIRES CACHING ##
-<IfModule mod_expires.c>
-ExpiresActive On
-ExpiresByType image/jpg "access 1 year"
-ExpiresByType image/jpeg "access 1 year"
-ExpiresByType image/gif "access 1 year"
-ExpiresByType image/png "access 1 year"
-ExpiresByType text/css "access 1 month"
-ExpiresByType text/html "access 1 month"
-ExpiresByType application/pdf "access 1 month"
-ExpiresByType text/x-javascript "access 1 month"
-ExpiresByType application/x-shockwave-flash "access 1 month"
-ExpiresByType image/x-icon "access 1 year"
-ExpiresDefault "access 1 month"
 </IfModule>
-## EXPIRES CACHING ##
+
+# BEGIN EXPIRES
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 10 days"
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType text/plain "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType application/x-icon "access plus 1 year"
+</IfModule>
+# END EXPIRES
