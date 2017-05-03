@@ -16,27 +16,27 @@ SASS - http://sass-lang.com/install
 
 Clone the repository to your local machine (ideally within a local server XAMPP, WAMP etc.) open the terminal on your machine and change directory to where you have cloned the project. e.g cd /Applications/XAMPP/htdocs/project-name
 
-<div>Step 2:</div>
+<strong>Step 2:</strong>
 
 Next we need to install the modules required to use gulp, these are used in our 'gulpfile.js' file. The modules required are declared in the 'package.json' file. To make sure the modules listed in the package.json file are the latest version type the commands:
 
-npm i -g npm-check-updates <br/>
+<i>npm i -g npm-check-updates <br/>
 npm-check-updates -u <br/>
-npm install <br/>
+npm install </i>
 
-To install the modules type the following command: npm install
+To install the modules type the following command: <i>npm install</i>
 
 Note: If you are recieving write access errors add sudo in front: sudo npm install
 
-<div>Step 3:</div>
+<strong>Step 3:</strong>
 
 Next we need to run the build tool gulp.
 
-Type the following command: gulp
+Type the following command: <i>gulp</i>
 
 Gulp will start and run any tasks setup in 'gulpfile.js'. It will watch for any changes in the /src directory and automatically compile the scripts and output them in public_html.
 
-<div>Step 4:</div>
+<strong>Step 4:</strong>
 
 Make sure any js or css edits are made in the /src/ directory. GULP will output the final minified versions in the distribution/build directory.
 
