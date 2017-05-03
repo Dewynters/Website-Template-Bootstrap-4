@@ -20,9 +20,9 @@ Step 2:
 
 Next we need to install the modules required to use gulp, these are used in our 'gulpfile.js' file. The modules required are declared in the 'package.json' file. To make sure the modules listed in the package.json file are the latest version type the commands:
 
-npm i -g npm-check-updates
-npm-check-updates -u
-npm install
+npm i -g npm-check-updates <br/>
+npm-check-updates -u <br/>
+npm install <br/>
 
 To install the modules type the following command: npm install
 
