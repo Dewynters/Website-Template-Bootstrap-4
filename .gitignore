@@ -6,17 +6,6 @@
 /build/inc/db_details.php
 /templates/inc/db_details.php
 
-#modx files uploaded by user
-/build/assets/filemanager/
-#modx extras (plugins) that may be updated through cms
-/build/assets/components/
-/build/core/components/
-/build/core/packages/
-#modx cache
-/build/core/cache/
-#modx db details, do not store on github or any third party
-/build/core/config/config.inc.php
-
 # OS generated files
 .DS_Store
 .DS_Store?

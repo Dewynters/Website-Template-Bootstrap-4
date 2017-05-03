@@ -1,6 +1,6 @@
 # Website-Template
 
-Simon Richards - Dewynters - Jan 2017
+Simon Richards - Dewynters - May 2017
 
 This is a skeleton template to help start building the front end of a website.
 
@@ -18,8 +18,11 @@ Clone the repository to your local machine (ideally within a local server XAMPP,
 
 Step 2:
 
-Next we need to install the modules required to use gulp, these are used in our 'gulpfile.js' file. The modules required are declared in the 'package.json' file. To make sure the modules listed in the package.json file are the latest version type the command: npm init
-Then go through the step by step process. Once complete check the package.json file, you may have to remove the existing list of dependencies.
+Next we need to install the modules required to use gulp, these are used in our 'gulpfile.js' file. The modules required are declared in the 'package.json' file. To make sure the modules listed in the package.json file are the latest version type the commands:
+
+npm i -g npm-check-updates
+npm-check-updates -u
+npm install
 
 To install the modules type the following command: npm install
 
@@ -40,8 +43,6 @@ Make sure any js or css edits are made in the /src/ directory. GULP will output 
 Code away!!
 
 NOTES:
-
-Favicons are auto generated, update the /src/images/favicon-master.png to your favicon. The code to add to the header is stored under /src/templates/rendered
 
 To add bootstrap features/plugins edit the gulpfile.js and comment out the ones required.
 

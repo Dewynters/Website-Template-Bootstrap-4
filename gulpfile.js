@@ -4,7 +4,6 @@
  * To install dependencies listed in package.json:
  * 1. cd to the directory containing the package.json
  * 2. type: npm install
- *
  */
 
 // Include gulp and plugins 
@@ -53,8 +52,7 @@ gulp.task('scss', function() {
     .pipe(sourcemaps.init())
     .pipe(sass({
         precision: 8,
-        style: 'compressed',
-        includePaths: [config.bootstrapDir + '/assets/stylesheets']
+        style: 'compressed'
     }).on('error', sass.logError))
     .pipe(autoprefixer({
         browsers: [
