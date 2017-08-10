@@ -14,7 +14,7 @@ $transition-speed-medium:	0.5s !default;
 //## Gray and brand colors for use across Bootstrap.
 
 $gray-base:              #000 !default;
-$gray-darker:            #2d2d2d; // main dark grey used througHOut 
+$gray-darker:            lighten($gray-base, 10%) !default; 
 $gray-dark:              lighten($gray-base, 20%) !default;   // #333
 $gray:                   lighten($gray-base, 33.5%) !default; // #555
 $gray-light:             lighten($gray-base, 46.7%) !default; // #777
