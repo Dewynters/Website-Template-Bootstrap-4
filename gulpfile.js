@@ -21,12 +21,11 @@ var gulp = require('gulp'),
 
 // Project directories
 var config = {
-    bootstrapDir: './node_modules/bootstrap-sass',
+//     bootstrapDir: './node_modules/bootstrap-sass',
     jQueryDir: './node_modules/jquery',
     publicDir: './build',
     projectScssDir: './src/scss',
-    projectJsDir: './src/js',
-    projectTemplateDir: './src/templates'
+    projectJsDir: './src/js'
 };
 
 // Start browserSync server
@@ -79,18 +78,6 @@ gulp.task('scss', function() {
 gulp.task('scripts', function() {
     return gulp.src([
         config.jQueryDir + '/dist/jquery.min.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/transition.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/alert.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/button.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/carousel.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/collapse.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/dropdown.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/modal.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/tab.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/affix.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/scrollspy.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/tooltip.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/popover.js',
         config.projectJsDir + '/vendor/*.js',
         config.projectJsDir + '/*.js',
     ])
