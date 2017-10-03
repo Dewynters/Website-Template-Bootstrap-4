@@ -1,10 +1,5 @@
 #general
-/build/test.php
-/build/test.html
 /node_modules/
-/bower_components/
-/build/inc/db_details.php
-/templates/inc/db_details.php
 
 # OS generated files
 .DS_Store

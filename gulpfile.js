@@ -21,12 +21,11 @@ var gulp = require('gulp'),
 
 // Project directories
 var config = {
-    bootstrapDir: './node_modules/bootstrap-sass',
+    bootstrapDir: './node_modules/bootstrap',
     jQueryDir: './node_modules/jquery',
     publicDir: './build',
     projectScssDir: './src/scss',
-    projectJsDir: './src/js',
-    projectTemplateDir: './src/templates'
+    projectJsDir: './src/js'
 };
 
 // Start browserSync server
@@ -56,14 +55,32 @@ gulp.task('scss', function() {
     }).on('error', sass.logError))
     .pipe(autoprefixer({
         browsers: [
-            "Android 2.3",
-            "Android >= 4",
-            "Chrome >= 20",
-            "Firefox >= 24",
-            "Explorer >= 8",
-            "iOS >= 6",
-            "Opera >= 12",
-            "Safari >= 6"
+            //"Android 2.3",
+            //"Android >= 4",
+            //"Chrome >= 20",
+            //"Firefox >= 24",
+            //"Explorer >= 8",
+            //"iOS >= 6",
+            //"Opera >= 12",
+            //"Safari >= 6"
+        
+	        // Official browser support policy:
+	        // https://v4-alpha.getbootstrap.com/getting-started/browsers-devices/#supported-browsers
+	        //
+	        'Chrome >= 45', // Exact version number here is kinda arbitrary
+	        'Firefox ESR',
+	        // Note: Edge versions in Autoprefixer & Can I Use refer to the EdgeHTML rendering engine version,
+	        // NOT the Edge app version shown in Edge's "About" screen.
+	        // For example, at the time of writing, Edge 20 on an up-to-date system uses EdgeHTML 12.
+	        // See also https://github.com/Fyrd/caniuse/issues/1928
+	        'Edge >= 12',
+	        'Explorer >= 10',
+	        // Out of leniency, we prefix these 1 version further back than the official policy.
+	        'iOS >= 9',
+	        'Safari >= 9',
+	        // The following remain NOT officially supported, but we're lenient and include their prefixes to avoid severely breaking in them.
+	        'Android >= 4.4',
+	        'Opera >= 30'
         ]
     }))
     .pipe(rename({ suffix: '.min' }))
@@ -79,18 +96,18 @@ gulp.task('scss', function() {
 gulp.task('scripts', function() {
     return gulp.src([
         config.jQueryDir + '/dist/jquery.min.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/transition.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/alert.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/button.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/carousel.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/collapse.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/dropdown.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/modal.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/tab.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/affix.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/scrollspy.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/tooltip.js',
-		//config.bootstrapDir + '/assets/javascripts/bootstrap/popover.js',
+		// Include any bootstrap JS here
+		//config.bootstrapDir + '/js/dist/alert.js',
+		//config.bootstrapDir + '/js/dist/button.js',
+		//config.bootstrapDir + '/js/dist/carousel.js',
+		//config.bootstrapDir + '/js/dist/collapse.js',
+		//config.bootstrapDir + '/js/dist/dropdown.js',
+		config.bootstrapDir + '/js/dist/modal.js',
+		//config.bootstrapDir + '/js/dist/popover.js',
+		//config.bootstrapDir + '/js/dist/scrollspy.js',
+		//config.bootstrapDir + '/js/dist/tab.js',
+		//config.bootstrapDir + '/js/dist/tooltip.js',
+		//config.bootstrapDir + '/js/dist/util.js'
         config.projectJsDir + '/vendor/*.js',
         config.projectJsDir + '/*.js',
     ])
