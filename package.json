@@ -2,24 +2,19 @@
   "name": "website-title",
   "version": "1.0.0",
   "description": "Website Title website",
-  "main": "index.php",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dewynters",
   "license": "ISC",
-  "dependencies": {
-    "jquery": "^3.2.1"
-  },
   "devDependencies": {
-    "bootstrap": "^4.0.0-beta",
-    "popper.js": "^1.12.5",
-    "jshint": "^2.9.5",
-    "browser-sync": "^2.18.13",
+    "jquery": "^3.1.1",
+    "jshint": "^2.9.4",
+    "browser-sync": "^2.18.5",
     "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^4.0.0",
-    "gulp-bower": "^0.0.13",
-    "gulp-clean-css": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean-css": "^3.0.4",
     "gulp-concat": "^2.6.1",
     "gulp-jshint": "^2.0.4",
     "gulp-plumber": "^1.1.0",
