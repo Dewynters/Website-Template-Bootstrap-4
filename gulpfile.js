@@ -50,20 +50,10 @@ gulp.task('scss', function() {
 	.pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(sass({
-        precision: 8,
-        style: 'compressed'
+        outputStyle: 'expanded'
     }).on('error', sass.logError))
     .pipe(autoprefixer({
         browsers: [
-            //"Android 2.3",
-            //"Android >= 4",
-            //"Chrome >= 20",
-            //"Firefox >= 24",
-            //"Explorer >= 8",
-            //"iOS >= 6",
-            //"Opera >= 12",
-            //"Safari >= 6"
-        
 	        // Official browser support policy:
 	        // https://v4-alpha.getbootstrap.com/getting-started/browsers-devices/#supported-browsers
 	        //
@@ -83,9 +73,15 @@ gulp.task('scss', function() {
 	        'Opera >= 30'
         ]
     }))
+	// Output main.css
+	.pipe(gulp.dest(config.publicDir + '/assets/css'))
+    .pipe(sass({
+        outputStyle: 'compressed'
+    }).on('error', sass.logError))
     .pipe(rename({ suffix: '.min' }))
     .pipe(cleancss())
     .pipe(sourcemaps.write('.'))
+	// Output main.min.css
     .pipe(gulp.dest(config.publicDir + '/assets/css'))
     .pipe(browserSync.reload({ // Reloading with Browser Sync
          stream: true
@@ -102,7 +98,7 @@ gulp.task('scripts', function() {
 		//config.bootstrapDir + '/js/dist/carousel.js',
 		//config.bootstrapDir + '/js/dist/collapse.js',
 		//config.bootstrapDir + '/js/dist/dropdown.js',
-		config.bootstrapDir + '/js/dist/modal.js',
+		//config.bootstrapDir + '/js/dist/modal.js',
 		//config.bootstrapDir + '/js/dist/popover.js',
 		//config.bootstrapDir + '/js/dist/scrollspy.js',
 		//config.bootstrapDir + '/js/dist/tab.js',

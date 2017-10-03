@@ -9,7 +9,7 @@
   "author": "Dewynters",
   "license": "ISC",
   "devDependencies": {
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.0.0-beta",
     "browser-sync": "^2.18.5",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
@@ -22,6 +22,7 @@
     "gulp-sourcemaps": "^2.6.1",
     "gulp-uglify": "^3.0.0",
     "jquery": "^3.1.1",
-    "jshint": "^2.9.4"
+    "jshint": "^2.9.4",
+    "popper.js": "^1.11.0"
   }
 }
