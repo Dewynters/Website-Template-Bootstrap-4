@@ -1,4 +1,4 @@
-# Website-Template
+# Website-Template-Boostrap-4
 
 Simon Richards - Dewynters - May 2017
 
@@ -38,12 +38,10 @@ Gulp will start and run any tasks setup in 'gulpfile.js'. It will watch for any 
 
 <strong>Step 4:</strong>
 
-Make sure any js or css edits are made in the /src/ directory. GULP will output the final minified versions in the distribution/build directory.
+Make sure any js or css edits are made in the /src/ directory. Gulp will output the final minified versions in the distribution/build directory.
 
 Code away!!
 
 NOTES:
 
-To add bootstrap features/plugins edit the gulpfile.js and comment out the ones required.
-
-Some plugins are included under /src/js/vendor, delete ones you do not plan on using also check they are up to date.
+To add bootstrap JS edit the gulpfile.js and comment out the ones required.
