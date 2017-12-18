@@ -21,7 +21,7 @@ var gulp = require('gulp'),
 
 // Project directories
 var config = {
-    bootstrapDir: './node_modules/bootstrap',
+	bootstrapDir: './src/js/bootstrap',
     jQueryDir: './node_modules/jquery',
     publicDir: './build',
     projectScssDir: './src/scss',
@@ -93,17 +93,17 @@ gulp.task('scripts', function() {
     return gulp.src([
         config.jQueryDir + '/dist/jquery.min.js',
 		// Include any bootstrap JS here
-		//config.bootstrapDir + '/js/dist/alert.js',
-		//config.bootstrapDir + '/js/dist/button.js',
-		//config.bootstrapDir + '/js/dist/carousel.js',
-		//config.bootstrapDir + '/js/dist/collapse.js',
-		//config.bootstrapDir + '/js/dist/dropdown.js',
-		//config.bootstrapDir + '/js/dist/modal.js',
-		//config.bootstrapDir + '/js/dist/popover.js',
-		//config.bootstrapDir + '/js/dist/scrollspy.js',
-		//config.bootstrapDir + '/js/dist/tab.js',
-		//config.bootstrapDir + '/js/dist/tooltip.js',
-		//config.bootstrapDir + '/js/dist/util.js'
+		config.bootstrapDir + '/alert.js',
+		config.bootstrapDir + '/button.js',
+		config.bootstrapDir + '/carousel.js',
+		config.bootstrapDir + '/collapse.js',
+		config.bootstrapDir + '/dropdown.js',
+		config.bootstrapDir + '/modal.js',
+		config.bootstrapDir + '/popover.js',
+		config.bootstrapDir + '/scrollspy.js',
+		config.bootstrapDir + '/tab.js',
+		config.bootstrapDir + '/tooltip.js',
+		config.bootstrapDir + '/util.js',
         config.projectJsDir + '/vendor/*.js',
         config.projectJsDir + '/*.js',
     ])
