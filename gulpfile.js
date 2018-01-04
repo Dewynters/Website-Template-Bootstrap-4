@@ -90,23 +90,13 @@ gulp.task('scss', function() {
 
 // Concatenate & Minify JS
 gulp.task('scripts', function() {
-    return gulp.src([
-        config.jQueryDir + '/dist/jquery.min.js',
-		// Include any bootstrap JS here
-		config.bootstrapDir + '/alert.js',
-		config.bootstrapDir + '/button.js',
-		config.bootstrapDir + '/carousel.js',
-		config.bootstrapDir + '/collapse.js',
-		config.bootstrapDir + '/dropdown.js',
-		config.bootstrapDir + '/modal.js',
-		config.bootstrapDir + '/popover.js',
-		config.bootstrapDir + '/scrollspy.js',
-		config.bootstrapDir + '/tab.js',
-		config.bootstrapDir + '/tooltip.js',
-		config.bootstrapDir + '/util.js',
-        config.projectJsDir + '/vendor/*.js',
-        config.projectJsDir + '/*.js',
-    ])
+	return gulp.src([
+		config.jQueryDir + '/dist/jquery.min.js',
+		// Remove any bootstrap JS from below file (index.js)
+		config.bootstrapDir + '/index.js',
+		config.projectJsDir + '/vendor/*.js',
+		config.projectJsDir + '/*.js',
+	])
 	.pipe(plumber())
     .pipe(concat('main.js'))
     .pipe(gulp.dest(config.publicDir + '/assets/js'))
