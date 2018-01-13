@@ -92,8 +92,21 @@ gulp.task('scss', function() {
 gulp.task('scripts', function() {
 	return gulp.src([
 		config.jQueryDir + '/dist/jquery.min.js',
+		// Uncomment popper.js, index.js and util.js if using bootstrap js
+		// config.popperDir + '/dist/umd/popper.min.js',
 		// Remove any bootstrap JS from below file (index.js)
-		config.bootstrapDir + '/index.js',
+		// config.bootstrapDir + '/index.js',
+		// config.bootstrapDir + '/alert.js',
+		// config.bootstrapDir + '/button.js',
+		// config.bootstrapDir + '/carousel.js',
+		// config.bootstrapDir + '/collapse.js',
+		// config.bootstrapDir + '/dropdown.js',
+		// config.bootstrapDir + '/modal.js',
+		// config.bootstrapDir + '/popover.js',
+		// config.bootstrapDir + '/scrollspy.js',
+		// config.bootstrapDir + '/tab.js',
+		// config.bootstrapDir + '/tooltip.js',
+		// config.bootstrapDir + '/util.js',
 		config.projectJsDir + '/vendor/*.js',
 		config.projectJsDir + '/*.js',
 	])
