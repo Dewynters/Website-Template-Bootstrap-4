@@ -97,7 +97,6 @@ gulp.task('scripts', function() {
 		 * UNCOMMENT POPPER.JS, INDEX.JS AND UTIL.JS IF USING ANY BOOTSTRAP JS BELOW
 		 * **/
 		// config.popperDir + '/dist/umd/popper.min.js',
-		// Remove any bootstrap JS from below file (index.js)
 		// config.bootstrapDir + '/index.js',
 		// config.bootstrapDir + '/alert.js',
 		// config.bootstrapDir + '/button.js',
