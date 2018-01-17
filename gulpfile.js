@@ -22,6 +22,7 @@ var gulp = require('gulp'),
 // Project directories
 var config = {
 	bootstrapDir: './src/js/bootstrap',
+	popperDir: './node_modules/popper.js',
     jQueryDir: './node_modules/jquery',
     publicDir: './build',
     projectScssDir: './src/scss',
@@ -92,7 +93,9 @@ gulp.task('scss', function() {
 gulp.task('scripts', function() {
 	return gulp.src([
 		config.jQueryDir + '/dist/jquery.min.js',
-		// Uncomment popper.js, index.js and util.js if using bootstrap js
+		/** 
+		 * UNCOMMENT POPPER.JS, INDEX.JS AND UTIL.JS IF USING ANY BOOTSTRAP JS BELOW
+		 * **/
 		// config.popperDir + '/dist/umd/popper.min.js',
 		// Remove any bootstrap JS from below file (index.js)
 		// config.bootstrapDir + '/index.js',
