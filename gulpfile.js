@@ -24,7 +24,7 @@ var config = {
 	bootstrapDir: './src/js/bootstrap',
 	jQueryDir: './node_modules/jquery',
 	popperDir: './node_modules/popper.js',
-	publicDir: './build/core/themes/king-tut',
+	publicDir: './build',
 	devTemplateDir: './templates',
 	projectScssDir: './src/scss',
 	projectJsDir: './src/js'
