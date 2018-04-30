@@ -9,7 +9,7 @@
   "author": "Dewynters",
   "license": "ISC",
   "devDependencies": {
-    "bootstrap": "^4.0.0-beta.3",
+    "bootstrap": "^4.1.0",
     "browser-sync": "*",
     "gulp": "*",
     "gulp-autoprefixer": "*",
