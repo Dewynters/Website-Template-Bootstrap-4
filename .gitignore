@@ -1,7 +1,9 @@
 #general
 /node_modules/
 /build/assets/css/
-/build/assets/js
+/build/assets/js/
+/templates/assets/css/
+/templates/assets/js/
 
 # OS generated files
 .DS_Store

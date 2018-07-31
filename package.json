@@ -11,7 +11,7 @@
   "devDependencies": {
     "bootstrap": "^4.1.3",
     "browser-sync": "^2.24.6",
-    "gulp": "^4.0.0",
+    "gulp": "^3.9.1",
     "gulp-autoprefixer": "*",
     "gulp-clean-css": "*",
     "gulp-concat": "*",
@@ -22,7 +22,7 @@
     "gulp-sourcemaps": "*",
     "gulp-uglify": "*",
     "jquery": "*",
-    "jshint": "*",
+    "jshint": "^2.9.6",
     "popper.js": "^1.14.3"
   }
 }
