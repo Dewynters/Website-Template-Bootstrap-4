@@ -9,9 +9,9 @@
   "author": "Dewynters",
   "license": "ISC",
   "devDependencies": {
-    "bootstrap": "^4.1.0",
-    "browser-sync": "*",
-    "gulp": "*",
+    "bootstrap": "^4.1.3",
+    "browser-sync": "^2.24.6",
+    "gulp": "^4.0.0",
     "gulp-autoprefixer": "*",
     "gulp-clean-css": "*",
     "gulp-concat": "*",
@@ -23,6 +23,6 @@
     "gulp-uglify": "*",
     "jquery": "*",
     "jshint": "*",
-    "popper.js": "*"
+    "popper.js": "^1.14.3"
   }
 }
