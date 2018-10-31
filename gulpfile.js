@@ -18,6 +18,7 @@ var gulp = require('gulp'),
 	sourcemaps = require('gulp-sourcemaps'),
 	concat = require('gulp-concat'),
 	plumber = require('gulp-plumber'),
+	merge = require('gulp-merge'),
 	browserSync = require('browser-sync').create();
 
 // Project directories
@@ -99,36 +100,37 @@ gulp.task('scss', function () {
 });
 
 // Concatenate & Minify JS
-gulp.task('scripts', function () {
+gulp.task('bootstrap', function () {
+
 	return gulp.src([
-		config.jQueryDir + '/dist/jquery.min.js',
-		/** 
-		 * UNCOMMENT POPPER.JS, INDEX.JS AND UTIL.JS IF USING ANY BOOTSTRAP JS BELOW
-		 * **/
-		config.popperDir + '/dist/umd/popper.min.js',
-		'./node_modules/bootstrap/dist/js/bootstrap.min.js',
-		// config.bootstrapDir + '/index.js',
-		// config.bootstrapDir + '/alert.js',
-		// config.bootstrapDir + '/button.js',
-		// config.bootstrapDir + '/carousel.js',
-		// config.bootstrapDir + '/collapse.js',
-		// config.bootstrapDir + '/dropdown.js',
-		// config.bootstrapDir + '/modal.js',
-		// config.bootstrapDir + '/popover.js',
-		// config.bootstrapDir + '/scrollspy.js',
-		// config.bootstrapDir + '/tab.js',
-		// config.bootstrapDir + '/tooltip.js',
-		// config.bootstrapDir + '/util.js',
-		config.projectJsDir + '/vendor/*.js',
-		config.projectJsDir + '/modules/*.js',
-		config.projectJsDir + '/*.js',
-	])
+			config.jQueryDir + '/dist/jquery.min.js',
+			config.popperDir + '/dist/umd/popper.min.js',
+			'./node_modules/bootstrap/dist/js/bootstrap.min.js',
+		])
 		.pipe(plumber())
+		.pipe(concat('bootstrap.js'))
+		.pipe(gulp.dest(config.publicDir + '/assets/js'))
+		.pipe(gulp.dest(config.devTemplateDir + '/assets/js'))
+		.pipe(rename('bootstrap.min.js'))
+		.pipe(uglify())
+		.pipe(gulp.dest(config.publicDir + '/assets/js'))
+		.pipe(gulp.dest(config.devTemplateDir + '/assets/js'))
+		.pipe(browserSync.stream());
+});
+
+gulp.task('scripts', function () {
+
+	return gulp.src([
+			config.projectJsDir + '/vendor/*.js',
+			config.projectJsDir + '/modules/*.js',
+			config.projectJsDir + '/*.js',
+		])
+		.pipe(plumber())
+		.pipe(babel({ presets: ['@babel/env'] }))
 		.pipe(concat('main.js'))
 		.pipe(gulp.dest(config.publicDir + '/assets/js'))
 		.pipe(gulp.dest(config.devTemplateDir + '/assets/js'))
 		.pipe(rename('main.min.js'))
-		// .pipe(babel({ presets: ['@babel/env'] }))
 		.pipe(uglify())
 		.pipe(gulp.dest(config.publicDir + '/assets/js'))
 		.pipe(gulp.dest(config.devTemplateDir + '/assets/js'))
@@ -143,7 +145,7 @@ gulp.task('fonts', function () {
 
 // Watch Files For Changes
 gulp.task('watch', gulp.series('browserSync', function (done) {
-	gulp.watch(config.projectJsDir + '/**/*.js', gulp.series('lint', 'scripts'));
+	gulp.watch(config.projectJsDir + '/**/*.js', gulp.series('lint', 'bootstrap', 'scripts'));
 	gulp.watch(config.projectScssDir + '/**/*.scss', gulp.series('scss'));
 
 	gulp.watch(
@@ -157,4 +159,4 @@ gulp.task('watch', gulp.series('browserSync', function (done) {
 }));
 
 // Default Task
-gulp.task('default', gulp.series('lint', 'scripts', 'scss', 'fonts', gulp.parallel('watch')));
+gulp.task('default', gulp.series('lint', 'bootstrap', 'scripts', 'scss', 'fonts', gulp.parallel('watch')));

@@ -1,5 +1,3 @@
-var SampleFunction = function(name) {
-
-    console.log(name)
-
+const SampleFunction = (name) => {
+    console.log(`hellow ${name}`)
 };
