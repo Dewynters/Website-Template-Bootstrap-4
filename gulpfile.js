@@ -133,12 +133,12 @@ gulp.task('fonts', function () {
 });
 
 // Watch Files For Changes
-gulp.task('watch', ['browserSync'], function () {
+gulp.task('watch', gulp.series('browserSync', function () {
 	gulp.watch(config.projectJsDir + '/**/*.js', ['lint', 'scripts']);
 	gulp.watch(config.projectScssDir + '/**/*.scss', ['scss']);
 	gulp.watch(config.devTemplateDir + '/**/*.html').on('change', browserSync.reload);
 	gulp.watch(config.publicDir + '/**/*.html').on('change', browserSync.reload);
-});
+}));
 
 // Default Task
-gulp.task('default', ['lint', 'scripts', 'scss', 'fonts', 'browserSync', 'watch']);
+gulp.task('default', gulp.series(['lint', 'scripts', 'scss', 'fonts', 'browserSync', 'watch']));
