@@ -1,26 +1,17 @@
 //Js Revealing module pattern
-var core = function($) {
+var core = function ($) {
 
-    var init = function() {
-    	//List functions here
-        SampleFunction('Hello World');
-    };
-
-    /* 
-        Sample function
-    */
-    const SampleFunction = (name) => {
-
-        console.log(`hello ${name}`);
-
+    var init = function () {
+        //List functions here
+        SampleFunction('Simon');
     };
 
     return {
-    	init: init
+        init: init
     };
 
-} (jQuery);
+}(jQuery);
 
-jQuery(function() { 
-	core.init(); 
+jQuery(function () {
+    core.init();
 });

@@ -105,7 +105,8 @@ gulp.task('scripts', function () {
 		/** 
 		 * UNCOMMENT POPPER.JS, INDEX.JS AND UTIL.JS IF USING ANY BOOTSTRAP JS BELOW
 		 * **/
-		// config.popperDir + '/dist/umd/popper.min.js',
+		config.popperDir + '/dist/umd/popper.min.js',
+		'./node_modules/bootstrap/dist/js/bootstrap.min.js',
 		// config.bootstrapDir + '/index.js',
 		// config.bootstrapDir + '/alert.js',
 		// config.bootstrapDir + '/button.js',
@@ -119,13 +120,15 @@ gulp.task('scripts', function () {
 		// config.bootstrapDir + '/tooltip.js',
 		// config.bootstrapDir + '/util.js',
 		config.projectJsDir + '/vendor/*.js',
+		config.projectJsDir + '/modules/*.js',
 		config.projectJsDir + '/*.js',
 	])
 		.pipe(plumber())
 		.pipe(concat('main.js'))
 		.pipe(gulp.dest(config.publicDir + '/assets/js'))
+		.pipe(gulp.dest(config.devTemplateDir + '/assets/js'))
 		.pipe(rename('main.min.js'))
-		.pipe(babel({ presets: ['@babel/env'] }))
+		// .pipe(babel({ presets: ['@babel/env'] }))
 		.pipe(uglify())
 		.pipe(gulp.dest(config.publicDir + '/assets/js'))
 		.pipe(gulp.dest(config.devTemplateDir + '/assets/js'))
@@ -145,9 +148,9 @@ gulp.task('watch', gulp.series('browserSync', function (done) {
 
 	gulp.watch(
 		[
-			config.devTemplateDir + '/**/*', 
+			config.devTemplateDir + '/**/*',
 			config.publicDir + '/**/*'
-		], 
+		],
 		gulp.series(browserSyncReload)
 	);
 	done()
