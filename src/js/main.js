@@ -3,15 +3,17 @@ var core = function($) {
 
     var init = function() {
     	//List functions here
-    	initSampleFunction();
+        SampleFunction('Hello World');
     };
 
     /* 
         Sample function
     */
-    var initSampleFunction = function() {
-       
-    }; 
+    const SampleFunction = (name) => {
+
+        console.log(`hello ${name}`);
+
+    };
 
     return {
     	init: init

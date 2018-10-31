@@ -8,6 +8,7 @@
 
 // Include gulp and plugins 
 var gulp = require('gulp'),
+	babel = require('gulp-babel'),
 	sass = require('gulp-sass'),
 	cleancss = require('gulp-clean-css'),
 	autoprefixer = require('gulp-autoprefixer'),
@@ -31,18 +32,26 @@ var config = {
 };
 
 // Start browserSync server
-gulp.task('browserSync', function () {
+gulp.task('browserSync', function (done) {
 	browserSync.init({
 		server: {
-			baseDir: config.devTemplateDir
+			baseDir: config.devTemplateDir,
 		}
 	});
+	done();
 });
+
+function browserSyncReload(done) {
+	browserSync.reload();
+	done();
+}
 
 // Lint Task
 gulp.task('lint', function () {
 	return gulp.src(config.projectJsDir + '/*.js')
-		.pipe(jshint())
+		.pipe(jshint({
+			esnext: true
+		}))
 		.pipe(jshint.reporter('default'));
 });
 
@@ -86,9 +95,7 @@ gulp.task('scss', function () {
 		// Output main.min.css
 		.pipe(gulp.dest(config.publicDir + '/assets/css'))
 		.pipe(gulp.dest(config.devTemplateDir + '/assets/css'))
-		.pipe(browserSync.reload({ // Reloading with Browser Sync
-			stream: true
-		}));
+		.pipe(browserSync.stream());
 });
 
 // Concatenate & Minify JS
@@ -118,12 +125,11 @@ gulp.task('scripts', function () {
 		.pipe(concat('main.js'))
 		.pipe(gulp.dest(config.publicDir + '/assets/js'))
 		.pipe(rename('main.min.js'))
+		.pipe(babel({ presets: ['@babel/env'] }))
 		.pipe(uglify())
 		.pipe(gulp.dest(config.publicDir + '/assets/js'))
 		.pipe(gulp.dest(config.devTemplateDir + '/assets/js'))
-		.pipe(browserSync.reload({ // Reloading with Browser Sync
-			stream: true
-		}));
+		.pipe(browserSync.stream());
 });
 
 gulp.task('fonts', function () {
@@ -133,12 +139,19 @@ gulp.task('fonts', function () {
 });
 
 // Watch Files For Changes
-gulp.task('watch', gulp.series('browserSync', function () {
-	gulp.watch(config.projectJsDir + '/**/*.js', ['lint', 'scripts']);
-	gulp.watch(config.projectScssDir + '/**/*.scss', ['scss']);
-	gulp.watch(config.devTemplateDir + '/**/*.html').on('change', browserSync.reload);
-	gulp.watch(config.publicDir + '/**/*.html').on('change', browserSync.reload);
+gulp.task('watch', gulp.series('browserSync', function (done) {
+	gulp.watch(config.projectJsDir + '/**/*.js', gulp.series('lint', 'scripts'));
+	gulp.watch(config.projectScssDir + '/**/*.scss', gulp.series('scss'));
+
+	gulp.watch(
+		[
+			config.devTemplateDir + '/**/*', 
+			config.publicDir + '/**/*'
+		], 
+		gulp.series(browserSyncReload)
+	);
+	done()
 }));
 
 // Default Task
-gulp.task('default', gulp.series(['lint', 'scripts', 'scss', 'fonts', 'browserSync', 'watch']));
+gulp.task('default', gulp.series('lint', 'scripts', 'scss', 'fonts', gulp.parallel('watch')));
