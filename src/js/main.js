@@ -3,6 +3,7 @@ var core = function ($) {
 
     var init = function () {
         //List functions here
+        SampleFunction('Simon');
     };
 
     return {

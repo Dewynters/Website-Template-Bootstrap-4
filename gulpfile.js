@@ -9,6 +9,7 @@
 // Include gulp and plugins 
 var gulp = require('gulp'),
 	sass = require('gulp-sass'),
+	babel = require('gulp-babel'),
 	cleancss = require('gulp-clean-css'),
 	autoprefixer = require('gulp-autoprefixer'),
 	jshint = require('gulp-jshint'),
@@ -124,9 +125,24 @@ gulp.task('scripts', function () {
 		// config.bootstrapDir + '/tooltip.js',
 		// config.bootstrapDir + '/util.js',
 		config.projectJsDir + '/vendor/*.js',
+	])
+		.pipe(plumber())
+		.pipe(concat('vendors.js'))
+		.pipe(gulp.dest(config.publicDir + '/assets/js'))
+		.pipe(rename('vendors.min.js'))
+		.pipe(uglify())
+		.pipe(gulp.dest(config.publicDir + '/assets/js'))
+		.pipe(gulp.dest(config.devTemplateDir + '/assets/js'))
+		.pipe(browserSync.stream());
+});
+
+gulp.task('customscripts', function () {
+	return gulp.src([
+		config.projectJsDir + '/modules/*.js',
 		config.projectJsDir + '/*.js',
 	])
 		.pipe(plumber())
+		.pipe(babel({ presets: ['@babel/env'] }))
 		.pipe(concat('main.js'))
 		.pipe(gulp.dest(config.publicDir + '/assets/js'))
 		.pipe(rename('main.min.js'))
@@ -144,7 +160,7 @@ gulp.task('fonts', function () {
 
 // Watch Files For Changes
 gulp.task('watch', gulp.series('browserSync', function (done) {
-	gulp.watch(config.projectJsDir + '/**/*.js', gulp.series('lint', 'scripts'));
+	gulp.watch(config.projectJsDir + '/**/*.js', gulp.series('lint', 'scripts', 'customscripts'));
 	gulp.watch(config.projectScssDir + '/**/*.scss', gulp.series('scss'));
 
 	gulp.watch(
@@ -158,4 +174,4 @@ gulp.task('watch', gulp.series('browserSync', function (done) {
 }));
 
 // Default Task
-gulp.task('default', gulp.series('lint', 'scripts', 'scss', 'fonts', gulp.parallel('watch')));
+gulp.task('default', gulp.series('lint', 'scripts', 'customscripts', 'scss', 'fonts', gulp.parallel('watch')));
