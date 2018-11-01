@@ -47,9 +47,15 @@ function browserSyncReload(done) {
 }
 
 // Lint Task
+// Lint Task
 gulp.task('lint', function () {
-	return gulp.src(config.projectJsDir + '/*.js')
-		.pipe(jshint())
+	return gulp.src([
+		config.projectJsDir + '/modules/*.js',
+		config.projectJsDir + '/*.js'
+	])
+		.pipe(jshint({
+			esnext: true
+		}))
 		.pipe(jshint.reporter('default'));
 });
 
