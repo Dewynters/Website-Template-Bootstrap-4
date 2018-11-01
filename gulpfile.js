@@ -31,13 +31,19 @@ var config = {
 };
 
 // Start browserSync server
-gulp.task('browserSync', function () {
+gulp.task('browserSync', function (done) {
 	browserSync.init({
 		server: {
 			baseDir: config.devTemplateDir
 		}
 	});
+	done();
 });
+
+function browserSyncReload(done) {
+	browserSync.reload();
+	done();
+}
 
 // Lint Task
 gulp.task('lint', function () {
@@ -94,9 +100,7 @@ gulp.task('scss', function () {
 		// Output main.min.css
 		.pipe(gulp.dest(config.publicDir + '/assets/css'))
 		.pipe(gulp.dest(config.devTemplateDir + '/assets/css'))
-		.pipe(browserSync.reload({ // Reloading with Browser Sync
-			stream: true
-		}));
+		.pipe(browserSync.stream());
 });
 
 // Concatenate & Minify JS
@@ -106,19 +110,19 @@ gulp.task('scripts', function () {
 		/** 
 		 * UNCOMMENT POPPER.JS, INDEX.JS AND UTIL.JS IF USING ANY BOOTSTRAP JS BELOW
 		 * **/
-		config.popperDir + '/dist/umd/popper.min.js',
-		config.bootstrapDir + '/index.js',
+		// config.popperDir + '/dist/umd/popper.min.js',
+		// config.bootstrapDir + '/index.js',
 		// config.bootstrapDir + '/alert.js',
 		// config.bootstrapDir + '/button.js',
 		// config.bootstrapDir + '/carousel.js',
-		config.bootstrapDir + '/collapse.js',
-		config.bootstrapDir + '/dropdown.js',
-		config.bootstrapDir + '/modal.js',
+		// config.bootstrapDir + '/collapse.js',
+		// config.bootstrapDir + '/dropdown.js',
+		// config.bootstrapDir + '/modal.js',
 		// config.bootstrapDir + '/popover.js',
-		config.bootstrapDir + '/scrollspy.js',
+		// config.bootstrapDir + '/scrollspy.js',
 		// config.bootstrapDir + '/tab.js',
 		// config.bootstrapDir + '/tooltip.js',
-		config.bootstrapDir + '/util.js',
+		// config.bootstrapDir + '/util.js',
 		config.projectJsDir + '/vendor/*.js',
 		config.projectJsDir + '/*.js',
 	])
@@ -129,18 +133,29 @@ gulp.task('scripts', function () {
 		.pipe(uglify())
 		.pipe(gulp.dest(config.publicDir + '/assets/js'))
 		.pipe(gulp.dest(config.devTemplateDir + '/assets/js'))
-		.pipe(browserSync.reload({ // Reloading with Browser Sync
-			stream: true
-		}));
+		.pipe(browserSync.stream());
+});
+
+gulp.task('fonts', function () {
+	return gulp.src(config.bootstrapDir + '/assets/fonts/**/*')
+		.pipe(gulp.dest(config.devTemplateDir + '/assets/fonts'))
+		.pipe(gulp.dest(config.publicDir + '/assets/fonts'));
 });
 
 // Watch Files For Changes
-gulp.task('watch', ['browserSync'], function () {
-	gulp.watch(config.projectJsDir + '/**/*.js', ['lint', 'scripts']);
-	gulp.watch(config.projectScssDir + '/**/*.scss', ['scss']);
-	gulp.watch(config.devTemplateDir + '/**/*.html').on('change', browserSync.reload);
-	gulp.watch(config.publicDir + '/**/*.html').on('change', browserSync.reload);
-});
+gulp.task('watch', gulp.series('browserSync', function (done) {
+	gulp.watch(config.projectJsDir + '/**/*.js', gulp.series('lint', 'scripts'));
+	gulp.watch(config.projectScssDir + '/**/*.scss', gulp.series('scss'));
+
+	gulp.watch(
+		[
+			config.devTemplateDir + '/**/*',
+			config.publicDir + '/**/*'
+		],
+		gulp.series(browserSyncReload)
+	);
+	done();
+}));
 
 // Default Task
-gulp.task('default', ['lint', 'scripts', 'scss', 'browserSync', 'watch']);
+gulp.task('default', gulp.series('lint', 'scripts', 'scss', 'fonts', gulp.parallel('watch')));
