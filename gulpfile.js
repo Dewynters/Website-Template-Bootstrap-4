@@ -171,8 +171,8 @@ gulp.task('watch', gulp.series('browserSync', function (done) {
 
 	gulp.watch(
 		[
-			config.devTemplateDir + '/**/*',
-			config.publicDir + '/**/*'
+			config.devTemplateDir + '/**/*.html',
+			config.publicDir + '/**/*.html'
 		],
 		gulp.series(browserSyncReload)
 	);
